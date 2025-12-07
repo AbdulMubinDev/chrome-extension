@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "FB Engager – Mention Helper",
+  "version": "1.1",
+  "description": "Safely extract mentionable usernames from visible Facebook comments. No scraping, no spam, no risk.",
+  "icons": {
+    "16": "icon16.png",
+    "64": "icon64.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "scripting",
+    "storage",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://*.facebook.com/*",
+    "https://facebook.com/*",
+    "https://web.facebook.com/*",
+    "https://m.facebook.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.facebook.com/*",
+        "https://facebook.com/*",
+        "https://web.facebook.com/*",
+        "https://m.facebook.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_title": "FB Engager",
+    "default_icon": {
+      "16": "icon16.png",
+      "64": "icon64.png",
+      "128": "icon128.png"
+    }
+  }
+}
